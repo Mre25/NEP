@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Engineer Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="photos/me.jpeg" alt="Ehab Ali Photo">
+    <h1 id="name">Ehab Ali Shalaby</h1>
+    <h2 id="jobname">Junior Network Engineer</h2>
+  </header>
+  
+  <nav>
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('de')">Deutsch</button>
+  </nav>
+  
+  <section>
+    <div class="card">
+      <h2 id="title">About Me</h2>
+      <p id="about"></p>
+    </div>
+    
+    <div class="card">
+      <h3 id="skills-title">Skills</h3>
+      <div id="skills-list-container">
+        <ul id="skills-list">
+        </ul>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 id="projects-title">Projects</h3>
+      <div class="projects-cover" onclick="openProjectsGallery()">
+        <img src="photos/Network.jpeg" alt="All Projects">
+        <div class="cover-overlay">
+          <h3 id="all-projects-text">All Projects Here</h3>
+          <p id="click-to-view-text">Click to view all my network projects</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 id="cours-title">Courses & Self-Study</h3>
+      <div id="courses-list-container">
+        <ul id="courses-list">
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 id="contact-title">Contact</h3>
+      <p id="email-text"></p>
+      <p id="linkedin-text"></p>
+      <p id="github-text"></p>
+      <a id="cv-btn" class="cv-btn" href="Projects/Ehab Ali,Junior Network Engineer.pdf" download>Download CV</a>
+    </div>
+  </section>
+
+  <!-- Projects Gallery Lightbox -->
+  <div id="projects-gallery" class="projects-lightbox">
+    <div class="gallery-content">
+      <span class="close-gallery" onclick="closeProjectsGallery()">&times;</span>
+      <h3 id="my-projects-text">My Projects</h3>
+      
+      <div class="project-container">
+        <!-- Project 1 -->
+        <div class="gallery-project">
+          <div class="project-image">
+            <a href="photos/2swi.jpeg" data-lightbox="projects" data-title="Project 1 - Network Design with Two Switches">
+              <img src="photos/2swi.jpeg" alt="Project 1">
+            </a>
+          </div>
+          <div class="project-info">
+            <h4 id="project1-title">Network Design with Two Switches</h4>
+            <p id="project1-description"></p>
+            <div class="project-skills">
+              <h5 id="skills-used-text">Skills Used:</h5>
+              <p id="project1-skills"></p>
+            </div>
+            <a href="Projects/1Rw with 3Sw.pkt" class="download-btn" download id="download-project1-text">Download Project</a>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="gallery-project">
+          <div class="project-image">
+            <a href="photos/3rou.jpeg" data-lightbox="projects" data-title="Project 2 - Network Design with Three Routers">
+              <img src="photos/3rou.jpeg" alt="Project 2">
+            </a>
+          </div>
+          <div class="project-info">
+            <h4 id="project2-title">Network Design with Three Routers</h4>
+            <p id="project2-description"></p>
+            <div class="project-skills">
+              <h5>Skills Used:</h5>
+              <p id="project2-skills"></p>
+            </div>
+            <a href="Projects/3Rw with 2Ne.pkt" class="download-btn" download id="download-project2-text">Download Project</a>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="gallery-project">
+          <div class="project-image">
+            <a href="photos/vlan.jpeg" data-lightbox="projects" data-title="Project 3 - VLAN Implementation">
+              <img src="photos/vlan.jpeg" alt="Project 3">
+            </a>
+          </div>
+          <div class="project-info">
+            <h4 id="project3-title">VLAN Implementation</h4>
+            <p id="project3-description"></p>
+            <div class="project-skills">
+              <h5>Skills Used:</h5>
+              <p id="project3-skills"></p>
+            </div>
+            <a href="Projects/With vlan.pkt" class="download-btn" download id="download-project3-text">Download Project</a>
+          </div>
+        </div>
+
+                <!-- Project 4 -->
+        <div class="gallery-project">
+          <div class="project-image">
+            <a href="photos/3Rw.jpeg" data-lightbox="projects" data-title="Project 4 - Network Design with Three Routers And Three Switches">
+              <img src="photos/3Rw.jpeg" alt="Project 4">
+            </a>
+          </div>
+          <div class="project-info">
+            <h4 id="project3-title">Network Design with Three Routers And Three Switches</h4>
+            <p id="project4-description"></p>
+            <div class="project-skills">
+              <h5>Skills Used:</h5>
+              <p id="project4-skills"></p>
+            </div>
+            <a href="Projects/3Rw with 3Ne.pkt" class="download-btn" download id="download-project4-text">Download Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p id="footer-text">© 2025 Ehab Ali Gomaa. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
