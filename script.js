@@ -1,9 +1,9 @@
 const content = {
     en: {
       name: "Ehab Ali Shalaby",
-      jobname: "Junior Network Engineer",
+      jobname: "IT & Networking | Focus on Cybersecurity",
       title: "About Me",
-      about: "I'm Ehab Ali Shalaby, a Junior Network Engineer passionate about IT infrastructure and network technologies.<br><br>I have strong knowledge of routing and switching concepts, with hands-on experience in network security, Linux, Cisco, and Windows environments.<br><br>I have studied several professional courses including A+, Network+, Security+, and CCNA, which deepened my understanding of networking and cybersecurity fields.<br><br>I'm always eager to develop my skills and stay up to date with the latest technologies, believing that a strong infrastructure is the foundation of any successful IT system.",
+      about: "I'm Ehab Ali Shalaby, an IT and network enthusiast with a strong interest in digital networking, IT infrastructure, and cybersecurity. <br><br> I hold a Bachelor's degree in Business Information Systems, which provided me with a solid foundation in IT systems, business processes, and technology. <br><br>  Through self-study and hands-on projects, I have developed practical knowledge in routing and switching, network security, Linux, Cisco, and Windows environments. I have also studied professional courses such as A+, Network+, Security+, and CCNA.<br><br> I am particularly interested in cybersecurity and how secure network infrastructure plays a key role in protecting modern IT systems. I enjoy continuously learning and staying up to date with new technologies.",
       skills: "Skills",
       skillsItems: [
         "Networking Fundamentals: IP addressing, subnetting, routing, switching, VLANs, NAT, DHCP, DNS",
@@ -50,9 +50,9 @@ const content = {
     },
     de: {
       name: "Ehab Ali Shalaby",
-      jobname: "Junior-Netzwerktechniker",
+      jobname: "IT- und Netzwerktechnik | Schwerpunkt Cybersecurity",
       title: "Über mich",
-      about: "Hallo, Ich bin Ehab Ali Shalaby, ein leidenschaftlicher Junior-Netzwerktechniker mit Schwerpunkt auf IT-Infrastruktur und Netzwerktechnologien.<br><br>Ich verfüge über fundiertes Wissen in Routing und Switching sowie praktische Erfahrung in Netzwerksicherheit, Linux, Cisco und Windows.<br><br>Ich habe mehrere Fachkurse absolviert, darunter A+, Network+, Security+ und CCNA, die mein Verständnis für Netzwerke und Cybersicherheit vertieft haben.<br><br>Ich bin stets bestrebt, meine Fähigkeiten weiterzuentwickeln und mit den neuesten Technologien Schritt zu halten, denn ich glaube, dass eine starke Infrastruktur die Grundlage für jedes erfolgreiche IT-System ist.",
+      about: "Ich heiße Ehab Ali Shalaby und bin ein IT- und Netzwerk-Enthusiast mit großem Interesse an digitaler Vernetzung, IT-Infrastruktur und Cybersecurity. <br><br> Ich habe einen Bachelorabschluss in Wirtschaftsinformatik, der mir eine solide Grundlage in IT-Systemen, Geschäftsprozessen und Technologie vermittelt hat.  <br><br> Durch Selbststudium und praxisnahe Projekte habe ich mir fundierte Kenntnisse in Routing und Switching, Netzwerksicherheit, Linux sowie Cisco- und Windows-Umgebungen angeeignet außerdem habe ich professionelle Kurse wie A+, Network+, Security+ und CCNA absolviert. <br><br> Besonders interessiert mich der Bereich Cybersecurity und die Bedeutung sicherer Netzwerkinfrastrukturen für den Schutz moderner IT-Systeme.",
       skills: "Fähigkeiten",
       skillsItems: [
         "Netzwerkgrundlagen: IP-Adressierung, Subnetting, Routing, Switching, VLANs, NAT, DHCP, DNS",
@@ -224,4 +224,5 @@ const content = {
         closeProjectsGallery();
       }
     });
+
   });
