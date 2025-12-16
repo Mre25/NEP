@@ -1,6 +1,6 @@
 const content = {
     en: {
-      name: "Ehab Ali Shalaby",
+      name: "Ehab Shalaby",
       jobname: "IT & Networking | Focus on Cybersecurity",
       title: "About Me",
       about: "I'm Ehab Ali Shalaby, an IT and network enthusiast with a strong interest in digital networking, IT infrastructure, and cybersecurity. <br><br> I hold a Bachelor's degree in Business Information Systems, which provided me with a solid foundation in IT systems, business processes, and technology. <br><br>  Through self-study and hands-on projects, I have developed practical knowledge in routing and switching, network security, Linux, Cisco, and Windows environments. I have also studied professional courses such as A+, Network+, Security+, and CCNA.<br><br> I am particularly interested in cybersecurity and how secure network infrastructure plays a key role in protecting modern IT systems. I enjoy continuously learning and staying up to date with new technologies.",
@@ -49,10 +49,10 @@ const content = {
       project4Skills: "IP Subnetting, Router Configuration, Switch Setup, Inter-router Communication, Network Segmentation",
     },
     de: {
-      name: "Ehab Ali Shalaby",
+      name: "Ehab Shalaby",
       jobname: "IT- und Netzwerktechnik | Schwerpunkt Cybersecurity",
       title: "Über mich",
-      about: "Ich heiße Ehab Ali Shalaby und bin ein IT- und Netzwerk-Enthusiast mit großem Interesse an digitaler Vernetzung, IT-Infrastruktur und Cybersecurity. <br><br> Ich habe einen Bachelorabschluss in Wirtschaftsinformatik, der mir eine solide Grundlage in IT-Systemen, Geschäftsprozessen und Technologie vermittelt hat.  <br><br> Durch Selbststudium und praxisnahe Projekte habe ich mir fundierte Kenntnisse in Routing und Switching, Netzwerksicherheit, Linux sowie Cisco- und Windows-Umgebungen angeeignet außerdem habe ich professionelle Kurse wie A+, Network+, Security+ und CCNA absolviert. <br><br> Besonders interessiert mich der Bereich Cybersecurity und die Bedeutung sicherer Netzwerkinfrastrukturen für den Schutz moderner IT-Systeme.",
+      about: "Ich heiße Shalaby, Ehab Ali und bin ein IT- und Netzwerk-Enthusiast mit großem Interesse an digitaler Vernetzung, IT-Infrastruktur und Cybersecurity. <br><br> Ich habe einen Bachelorabschluss in Wirtschaftsinformatik, der mir eine solide Grundlage in IT-Systemen, Geschäftsprozessen und Technologie vermittelt hat.  <br><br> Durch Selbststudium und praxisnahe Projekte habe ich mir fundierte Kenntnisse in Routing und Switching, Netzwerksicherheit, Linux sowie Cisco- und Windows-Umgebungen angeeignet außerdem habe ich professionelle Kurse wie A+, Network+, Security+ und CCNA absolviert. <br><br> Besonders interessiert mich der Bereich Cybersecurity und die Bedeutung sicherer Netzwerkinfrastrukturen für den Schutz moderner IT-Systeme.",
       skills: "Fähigkeiten",
       skillsItems: [
         "Netzwerkgrundlagen: IP-Adressierung, Subnetting, Routing, Switching, VLANs, NAT, DHCP, DNS",
@@ -226,3 +226,4 @@ const content = {
     });
 
   });
+
