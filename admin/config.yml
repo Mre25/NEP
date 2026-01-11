@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main
+
+collections:
+  - name: "portfolio"
+    label: "Portfolio Content"
+    files:
+      - file: "data.json"
+        label: "Main Content"
+        name: "data"
+        fields:
+          - label: "English"
+            name: "en"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Job Title", name: "jobname", widget: "string" }
+              - { label: "About", name: "about", widget: "text" }
+              - label: "Skills"
+                name: "skillsItems"
+                widget: "list"
+              - label: "Courses"
+                name: "coursesItems"
+                widget: "list"
