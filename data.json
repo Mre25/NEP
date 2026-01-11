@@ -1,8 +1,15 @@
 {
   "en": {
-    "name": "Ehab Ali",
-    "job": "IT & Networking | Cybersecurity Enthusiast",
-    "about": "I am an IT and networking enthusiast focusing on networking fundamentals and cybersecurity.",
+    "header": {
+      "name": "Ehab Ali",
+      "job": "IT & Networking | Focus on Cybersecurity"
+    },
+
+    "sections": {
+      "aboutTitle": "About Me",
+      "aboutText": "I am an IT and networking enthusiast focusing on networking fundamentals and cybersecurity. I build practical labs and projects to improve my skills."
+    },
+
     "skills": [
       "Networking Fundamentals",
       "IP Addressing & Subnetting",
@@ -10,42 +17,108 @@
       "VLANs & NAT",
       "Basic Cybersecurity Concepts"
     ],
-    "projects": [
-      {
-        "title": "Networking Lab",
-        "description": "Basic networking lab using VLANs and routing concepts.",
-        "image": "photos/vlan.jpeg",
-        "link": "#"
-      }
+
+    "courses": [
+      "CompTIA A+",
+      "CompTIA Network+",
+      "Cisco CCNA (Self-Study)"
     ],
+
+    "projectsCover": {
+      "title": "All Projects Here",
+      "subtitle": "Click to view all my network projects"
+    },
+
+    "gallery": {
+      "title": "My Projects",
+      "projects": [
+        {
+          "title": "Network Design with Two Switches",
+          "description": "Basic network design using two switches and routing concepts.",
+          "skills": "Switching, Routing",
+          "image": "photos/2swi.jpeg",
+          "download": "Projects/1Rw with 3Sw.pkt"
+        },
+        {
+          "title": "Network Design with Three Routers",
+          "description": "Routing lab using three routers.",
+          "skills": "Routing, Subnetting",
+          "image": "photos/3rou.jpeg",
+          "download": "Projects/3Rw with 2Ne.pkt"
+        },
+        {
+          "title": "VLAN Implementation",
+          "description": "VLAN configuration and segmentation.",
+          "skills": "VLANs, Switching",
+          "image": "photos/vlan.jpeg",
+          "download": "Projects/With vlan.pkt"
+        },
+        {
+          "title": "Network Design with Three Routers And Three Switches",
+          "description": "Advanced routing and switching topology.",
+          "skills": "Routing, Switching",
+          "image": "photos/3Rw.jpeg",
+          "download": "Projects/3Rw with 3Ne.pkt"
+        }
+      ]
+    },
+
     "contact": {
       "email": "ehab.ali.gomaa256@gmail.com",
-      "github": "https://github.com/Mre25",
-      "linkedin": "https://linkedin.com"
-    }
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com/Mre25"
+    },
+
+    "footer": "© 2025 Ehab Ali Gomaa. All rights reserved."
   },
+
   "de": {
-    "name": "Ehab Ali",
-    "job": "IT- und Netzwerktechnik | Cybersecurity",
-    "about": "Ich interessiere mich für IT, Netzwerke und Cybersecurity.",
+    "header": {
+      "name": "Ehab Ali",
+      "job": "IT & Netzwerktechnik | Schwerpunkt Cybersecurity"
+    },
+
+    "sections": {
+      "aboutTitle": "Über mich",
+      "aboutText": "Ich interessiere mich für IT, Netzwerke und Cybersecurity und arbeite an praktischen Projekten."
+    },
+
     "skills": [
       "Netzwerkgrundlagen",
       "IP-Adressierung",
       "Routing und Switching",
       "VLANs"
     ],
-    "projects": [
-      {
-        "title": "Netzwerklabor",
-        "description": "Ein einfaches Netzwerklabor mit VLANs.",
-        "image": "photos/vlan.jpeg",
-        "link": "#"
-      }
+
+    "courses": [
+      "CompTIA Network+",
+      "Cisco CCNA"
     ],
+
+    "projectsCover": {
+      "title": "Alle Projekte",
+      "subtitle": "Klicken Sie, um meine Netzwerkprojekte zu sehen"
+    },
+
+    "gallery": {
+      "title": "Meine Projekte",
+      "projects": [
+        {
+          "title": "Netzwerkdesign mit zwei Switches",
+          "description": "Ein einfaches Netzwerkdesign mit Switches.",
+          "skills": "Switching",
+          "image": "photos/2swi.jpeg",
+          "download": "Projects/1Rw with 3Sw.pkt"
+        }
+      ]
+    },
+
     "contact": {
       "email": "ehab.ali.gomaa256@gmail.com",
-      "github": "https://github.com/Mre25",
-      "linkedin": "https://linkedin.com"
-    }
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com/Mre25"
+    },
+
+    "footer": "© 2025 Ehab Ali Gomaa. Alle Rechte vorbehalten."
   }
 }
