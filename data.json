@@ -1,124 +1,57 @@
 {
   "en": {
-    "header": {
-      "name": "Ehab Ali",
-      "job": "IT & Networking | Focus on Cybersecurity"
-    },
-
-    "sections": {
-      "aboutTitle": "About Me",
-      "aboutText": "I am an IT and networking enthusiast focusing on networking fundamentals and cybersecurity. I build practical labs and projects to improve my skills."
-    },
-
+    "name": "Ehab Shalaby",
+    "jobname": "IT & Networking | Focus on Cybersecurity",
+    "about": "I'm Ehab Ali Shalaby, an IT and network enthusiast with a strong interest in digital networking, IT infrastructure, and cybersecurity. I hold a Bachelor's degree in Business Information Systems. I studied professional courses such as A+, Network+, Security+, CCNA, and have hands-on projects in routing, switching, Linux, Windows, and Cisco environments.",
     "skills": [
-      "Networking Fundamentals",
-      "IP Addressing & Subnetting",
-      "Routing & Switching",
-      "VLANs & NAT",
-      "Basic Cybersecurity Concepts"
+      "Networking Fundamentals: IP addressing, subnetting, routing, switching, VLANs, NAT, DHCP, DNS",
+      "Certifications Studied: CompTIA A+, Network+, Security+, Cisco CCNA",
+      "Network Tools: Cisco Packet Tracer, GNS3",
+      "Troubleshooting & Configuration: Network setup, fault isolation, performance tuning",
+      "Cybersecurity Basics: Network security principles, access control, firewalls, threat awareness",
+      "Technical Skills: Windows OS, basic Linux commands, hardware setup and diagnostics",
+      "Soft Skills: Problem-solving, attention to detail, teamwork, self-learning, time management"
     ],
-
     "courses": [
-      "CompTIA A+",
-      "CompTIA Network+",
-      "Cisco CCNA (Self-Study)"
+      "CompTIA A+ (Computer hardware, software, troubleshooting)",
+      "CompTIA Network+ (Network fundamentals, protocols, devices, and security)",
+      "CompTIA Security+ (Basic security concepts, threats, and mitigation)",
+      "Cisco CCNA (Routing, switching, IP addressing, VLANs, OSPF)"
     ],
-
-    "projectsCover": {
-      "title": "All Projects Here",
-      "subtitle": "Click to view all my network projects"
-    },
-
-    "gallery": {
-      "title": "My Projects",
-      "projects": [
-        {
-          "title": "Network Design with Two Switches",
-          "description": "Basic network design using two switches and routing concepts.",
-          "skills": "Switching, Routing",
-          "image": "photos/2swi.jpeg",
-          "download": "Projects/1Rw with 3Sw.pkt"
-        },
-        {
-          "title": "Network Design with Three Routers",
-          "description": "Routing lab using three routers.",
-          "skills": "Routing, Subnetting",
-          "image": "photos/3rou.jpeg",
-          "download": "Projects/3Rw with 2Ne.pkt"
-        },
-        {
-          "title": "VLAN Implementation",
-          "description": "VLAN configuration and segmentation.",
-          "skills": "VLANs, Switching",
-          "image": "photos/vlan.jpeg",
-          "download": "Projects/With vlan.pkt"
-        },
-        {
-          "title": "Network Design with Three Routers And Three Switches",
-          "description": "Advanced routing and switching topology.",
-          "skills": "Routing, Switching",
-          "image": "photos/3Rw.jpeg",
-          "download": "Projects/3Rw with 3Ne.pkt"
-        }
-      ]
-    },
-
     "contact": {
       "email": "ehab.ali.gomaa256@gmail.com",
-      "linkedin": "https://linkedin.com",
-      "github": "https://github.com/Mre25"
+      "linkedin": "https://linkedin.com/in/ehabali25",
+      "github": "https://www.github.com/Mre25"
     },
-
-    "footer": "© 2025 Ehab Ali Gomaa. All rights reserved."
-  },
-
-  "de": {
-    "header": {
-      "name": "Ehab Ali",
-      "job": "IT & Netzwerktechnik | Schwerpunkt Cybersecurity"
-    },
-
-    "sections": {
-      "aboutTitle": "Über mich",
-      "aboutText": "Ich interessiere mich für IT, Netzwerke und Cybersecurity und arbeite an praktischen Projekten."
-    },
-
-    "skills": [
-      "Netzwerkgrundlagen",
-      "IP-Adressierung",
-      "Routing und Switching",
-      "VLANs"
-    ],
-
-    "courses": [
-      "CompTIA Network+",
-      "Cisco CCNA"
-    ],
-
-    "projectsCover": {
-      "title": "Alle Projekte",
-      "subtitle": "Klicken Sie, um meine Netzwerkprojekte zu sehen"
-    },
-
-    "gallery": {
-      "title": "Meine Projekte",
-      "projects": [
-        {
-          "title": "Netzwerkdesign mit zwei Switches",
-          "description": "Ein einfaches Netzwerkdesign mit Switches.",
-          "skills": "Switching",
-          "image": "photos/2swi.jpeg",
-          "download": "Projects/1Rw with 3Sw.pkt"
-        }
-      ]
-    },
-
-    "contact": {
-      "email": "ehab.ali.gomaa256@gmail.com",
-      "linkedin": "https://linkedin.com",
-      "github": "https://github.com/Mre25"
-    },
-
-    "footer": "© 2025 Ehab Ali Gomaa. Alle Rechte vorbehalten."
+    "projects": [
+      {
+        "title": "Network Design with Two Switches and VLAN Implementation",
+        "description": "Network designed using two switches connected via a trunk link. End devices assigned to VLANs to improve performance and security.",
+        "skills": "VLAN Configuration, Access and Trunk Port Setup, Switch-to-Switch Trunking, Network Segmentation",
+        "image": "photos/2swi.jpeg",
+        "download": "Projects/1Rw with 3Sw.pkt"
+      },
+      {
+        "title": "Network Design Using Three Routers with Static Routing",
+        "description": "Network topology with three routers connected via serial interfaces. Static routing configured for inter-network communication.",
+        "skills": "Static Routing Configuration, Serial Interface Setup, Subnetting, WAN Design Concepts",
+        "image": "photos/3rou.jpeg",
+        "download": "Projects/3Rw with 2Ne.pkt"
+      },
+      {
+        "title": "VLAN Implementation with Inter-VLAN Routing",
+        "description": "Comprehensive VLAN setup using router-on-a-stick for inter-VLAN routing.",
+        "skills": "VLAN and Inter-VLAN Routing, Access and Trunk Port Configuration, Router-on-a-Stick Implementation",
+        "image": "photos/vlan.jpeg",
+        "download": "Projects/With vlan.pkt"
+      },
+      {
+        "title": "Network Design with Three Routers and Subnet Segmentation",
+        "description": "Three routers network divided into three subnets for different departments. Efficient IP management and scalability.",
+        "skills": "IP Subnetting, Router Configuration, Switch Setup, Inter-router Communication, Network Segmentation",
+        "image": "photos/3Rw.jpeg",
+        "download": "Projects/3Rw with 3Ne.pkt"
+      }
+    ]
   }
 }
