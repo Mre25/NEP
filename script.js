@@ -1,79 +1,40 @@
-let data = {};
-let currentLang = "en";
+let content = {};
+let currentLanguage = "en";
 
 fetch("data.json")
   .then(res => res.json())
-  .then(json => {
-    data = json;
-    updateContent();
-  })
-  .catch(err => console.error("JSON load error:", err));
-
-function updateContent() {
-  const c = data[currentLang];
-
-  // Header
-  document.getElementById("name").textContent = c.header.name;
-  document.getElementById("jobname").textContent = c.header.job;
-
-  // About
-  document.getElementById("title").textContent = c.sections.aboutTitle;
-  document.getElementById("about").textContent = c.sections.aboutText;
-
-  // Skills
-  const skillsList = document.getElementById("skills-list");
-  skillsList.innerHTML = "";
-  c.skills.forEach(skill => {
-    const li = document.createElement("li");
-    li.textContent = skill;
-    skillsList.appendChild(li);
+  .then(data => {
+    content = data;
+    setLanguage("en");
   });
-
-  // Courses
-  const coursesList = document.getElementById("courses-list");
-  coursesList.innerHTML = "";
-  c.courses.forEach(course => {
-    const li = document.createElement("li");
-    li.textContent = course;
-    coursesList.appendChild(li);
-  });
-
-  // Projects Cover
-  document.getElementById("all-projects-text").textContent = c.projectsCover.title;
-  document.getElementById("click-to-view-text").textContent = c.projectsCover.subtitle;
-
-  // Gallery Title
-  document.getElementById("my-projects-text").textContent = c.gallery.title;
-
-  // Gallery Projects
-  c.gallery.projects.forEach((p, i) => {
-    const index = i + 1;
-    document.getElementById(`project${index}-title`).textContent = p.title;
-    document.getElementById(`project${index}-description`).textContent = p.description;
-    document.getElementById(`project${index}-skills`).textContent = p.skills;
-  });
-
-  // Contact
-  document.getElementById("email-text").innerHTML =
-    `📧 <a href="mailto:${c.contact.email}">${c.contact.email}</a>`;
-  document.getElementById("linkedin-text").innerHTML =
-    `🔗 <a href="${c.contact.linkedin}" target="_blank">LinkedIn</a>`;
-  document.getElementById("github-text").innerHTML =
-    `💻 <a href="${c.contact.github}" target="_blank">GitHub</a>`;
-
-  // Footer
-  document.getElementById("footer-text").textContent = c.footer;
-}
 
 function setLanguage(lang) {
-  currentLang = lang;
-  updateContent();
+  currentLanguage = lang;
+  const d = content[lang];
+
+  document.getElementById("name").textContent = d.name;
+  document.getElementById("jobname").textContent = d.jobname;
+  document.getElementById("about").innerHTML = d.about;
+
+  document.getElementById("email-text").innerHTML =
+    `E-Mail: <a href="mailto:${d.contact.email}">${d.contact.email}</a>`;
+
+  document.getElementById("linkedin-text").innerHTML =
+    `LinkedIn: <a href="${d.contact.linkedin}" target="_blank">${d.contact.linkedin}</a>`;
+
+  document.getElementById("github-text").innerHTML =
+    `Github: <a href="${d.contact.github}" target="_blank">${d.contact.github}</a>`;
+
+  updateList("skills-list", d.skillsItems);
+  updateList("courses-list", d.coursesItems);
 }
 
-function openProjectsGallery() {
-  document.getElementById("projects-gallery").style.display = "block";
-}
-
-function closeProjectsGallery() {
-  document.getElementById("projects-gallery").style.display = "none";
+function updateList(id, items) {
+  const ul = document.getElementById(id);
+  ul.innerHTML = "";
+  items.forEach(i => {
+    const li = document.createElement("li");
+    li.textContent = i;
+    ul.appendChild(li);
+  });
 }
