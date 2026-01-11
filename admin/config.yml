@@ -1,25 +1,51 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: mre25/portfolio
   branch: main
+media_folder: "photos/uploads"
+public_folder: "/photos/uploads"
 
 collections:
-  - name: "portfolio"
-    label: "Portfolio Content"
+  - name: "about"
+    label: "About Me"
     files:
-      - file: "data.json"
-        label: "Main Content"
-        name: "data"
+      - file: "data/about.yml"
+        label: "About Section"
+        name: "about_content"
         fields:
-          - label: "English"
-            name: "en"
-            widget: "object"
-            fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Job Title", name: "jobname", widget: "string" }
-              - { label: "About", name: "about", widget: "text" }
-              - label: "Skills"
-                name: "skillsItems"
-                widget: "list"
-              - label: "Courses"
-                name: "coursesItems"
-                widget: "list"
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "Job", name: "jobname", widget: "string"}
+          - {label: "About Text", name: "about", widget: "markdown"}
+
+  - name: "skills"
+    label: "Skills"
+    files:
+      - file: "data/skills.yml"
+        label: "Skills List"
+        name: "skills_content"
+        fields:
+          - {label: "Skills", name: "skillsItems", widget: "list"}
+
+  - name: "projects"
+    label: "Projects"
+    files:
+      - file: "data/projects.yml"
+        label: "All Projects"
+        name: "projects_content"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "markdown"}
+          - {label: "Skills Used", name: "skills", widget: "string"}
+          - {label: "Image", name: "image", widget: "image"}
+          - {label: "Download File", name: "download", widget: "file"}
+
+  - name: "contact"
+    label: "Contact Info"
+    files:
+      - file: "data/contact.yml"
+        label: "Contact"
+        name: "contact_content"
+        fields:
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "LinkedIn", name: "linkedin", widget: "string"}
+          - {label: "Github", name: "github", widget: "string"}
