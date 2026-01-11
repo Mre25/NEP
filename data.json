@@ -1,4 +1,4 @@
-const content = {
+{
     en: {
       name: "Ehab Shalaby",
       jobname: "IT & Networking | Focus on Cybersecurity",
@@ -226,3 +226,4 @@ const content = {
     });
 
   });
+
