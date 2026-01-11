@@ -1,420 +1,228 @@
-/* General Styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #eef2f3, #8e9eab);
-  color: #1f2937;
-  line-height: 1.6;
-}
+const content = {
+    en: {
+      name: "Ehab Shalaby",
+      jobname: "IT & Networking | Focus on Cybersecurity",
+      title: "About Me",
+      about: "I'm Ehab Ali Shalaby, an IT and network enthusiast with a strong interest in digital networking, IT infrastructure, and cybersecurity. <br><br> I hold a Bachelor's degree in Business Information Systems, which provided me with a solid foundation in IT systems, business processes, and technology. <br><br>  Through self-study and hands-on projects, I have developed practical knowledge in routing and switching, network security, Linux, Cisco, and Windows environments. I have also studied professional courses such as A+, Network+, Security+, and CCNA.<br><br> I am particularly interested in cybersecurity and how secure network infrastructure plays a key role in protecting modern IT systems. I enjoy continuously learning and staying up to date with new technologies.",
+      skills: "Skills",
+      skillsItems: [
+        "Networking Fundamentals: IP addressing, subnetting, routing, switching, VLANs, NAT, DHCP, DNS",
+        "Certifications Studied: CompTIA A+, Network+, Security+, Cisco CCNA",
+        "Network Tools: Cisco Packet Tracer, GNS3",
+        "Troubleshooting & Configuration: Network setup, fault isolation, performance tuning",
+        "Cybersecurity Basics: Network security principles, access control, firewalls, threat awareness",
+        "Technical Skills: Windows OS, basic Linux commands, hardware setup and diagnostics",
+        "Soft Skills: Problem-solving, attention to detail, teamwork, self-learning, time management"
+      ],
+      projects: "Projects",
+      allProjects: "All Projects Here",
+      clickToView: "Click to view all my network projects",
+      myProjects: "My Projects",
+      skillsUsed: "Skills Used",
+      downloadProject: "Download Project",
+      courses: "Courses & Self-Study",
+      coursesItems: [
+        "Studied the core content of the following certification tracks:",
+        "CompTIA A+ (Computer hardware, software, troubleshooting)",
+        "CompTIA Network+ (Network fundamentals, protocols, devices, and security)",
+        "CompTIA Security+ (Basic security concepts, threats, and mitigation)",
+        "Cisco CCNA (Routing, switching, IP addressing, VLANs, OSPF)",
+        "Practical lab experience using Packet Tracer, GNS3, and VirtualBox"
+      ],
+      contact: "Contact",
+      cv: "Download CV",
+      email: "E-Mail: ehab.ali.gomaa256@gmail.com",
+      linkedin: "LinkedIn: linkedin.com/in/ehabali25",
+      github: "Github: www.github.com/Mre25",
+      footer: "© 2025 Ehab Ali Shalaby. All rights reserved.",
+      project1Title: "Network Design with Two Switches and VLAN Implementation",
+      project1Description: "In this project, a network was designed using two switches connected via a trunk link. End devices were distributed across both switches and assigned to different VLANs based on departmental segmentation. The aim was to improve network performance and security through logical separation. Trunk ports were configured to allow inter-VLAN communication between switches.",
+      project1Skills: "VLAN Configuration, Access and Trunk Port Setup, Switch-to-Switch Trunking, Network Segmentation",
+      project2Title: "Network Design Using Three Routers with Static Routing",
+      project2Description: "This project involves designing a network topology with three routers connected through serial interfaces to simulate WAN communication. Each router connects to a separate LAN, and static routing was configured to enable inter-network communication. This setup reflects real-world branch connectivity across distant locations.",
+      project2Skills: "Static Routing Configuration, Serial Interface Setup, Subnetting, WAN Design Concepts",
+      project3Title: "VLAN Implementation with Inter-VLAN Routing",
+      project3Description: "This project features a comprehensive VLAN setup on a LAN network. End devices were segmented by departments using VLANs. A router-on-a-stick method was implemented for inter-VLAN routing, allowing communication between different VLANs through a single router interface. This project demonstrates practical application of VLANs in enterprise environments.",
+      project3Skills: "VLAN and Inter-VLAN Routing, Access and Trunk Port Configuration, Router-on-a-Stick Implementation, Network Testing (Ping, CLI Commands)",
+      project4Title: "Network Design with Three Routers and Subnet Segmentation",
+      project4Description: "In this project, a network was designed using three routers, each connected to a local switch and a group of PCs. The network is divided into three main subnets, each representing a different department or location. Routers are interconnected to enable communication between the subnets using point-to-point links. Each subnet uses a /18 subnet mask for efficient IP management and scalability.",
+      project4Skills: "IP Subnetting, Router Configuration, Switch Setup, Inter-router Communication, Network Segmentation",
+    },
+    de: {
+      name: "Ehab Shalaby",
+      jobname: "IT- und Netzwerktechnik | Schwerpunkt Cybersecurity",
+      title: "Über mich",
+      about: "Ich heiße Shalaby, Ehab Ali und bin ein IT- und Netzwerk-Enthusiast mit großem Interesse an digitaler Vernetzung, IT-Infrastruktur und Cybersecurity. <br><br> Ich habe einen Bachelorabschluss in Wirtschaftsinformatik, der mir eine solide Grundlage in IT-Systemen, Geschäftsprozessen und Technologie vermittelt hat.  <br><br> Durch Selbststudium und praxisnahe Projekte habe ich mir fundierte Kenntnisse in Routing und Switching, Netzwerksicherheit, Linux sowie Cisco- und Windows-Umgebungen angeeignet außerdem habe ich professionelle Kurse wie A+, Network+, Security+ und CCNA absolviert. <br><br> Besonders interessiert mich der Bereich Cybersecurity und die Bedeutung sicherer Netzwerkinfrastrukturen für den Schutz moderner IT-Systeme.",
+      skills: "Fähigkeiten",
+      skillsItems: [
+        "Netzwerkgrundlagen: IP-Adressierung, Subnetting, Routing, Switching, VLANs, NAT, DHCP, DNS",
+        "Studierte Zertifizierungen: CompTIA A+, Network+, Security+, Cisco CCNA",
+        "Netzwerktools: Cisco Packet Tracer, GNS3",
+        "Fehlerbehebung & Konfiguration: Netzwerkeinrichtung, Fehlerisolierung, Leistungsoptimierung",
+        "Cybersecurity-Grundlagen: Netzwerksicherheitsprinzipien, Zugangskontrolle, Firewalls, Bedrohungsbewusstsein",
+        "Technische Fähigkeiten: Windows-Betriebssystem, grundlegende Linux-Befehle, Hardwareeinrichtung und Diagnose",
+        "Soft Skills: Problemlösung, Detailgenauigkeit, Teamarbeit, selbstständiges Lernen, Zeitmanagement"
+      ],
+      projects: "Projekte",
+      allProjects: "Alle Projekte hier",
+      clickToView: "Klicken Sie, um alle meine Netzwerkprojekte anzuzeigen",
+      myProjects: "Meine Projekte",
+      skillsUsed: "Verwendete Fähigkeiten",
+      downloadProject: "Projekt herunterladen",
+      courses: "Kurse & Selbststudium",
+      coursesItems: [
+      "Studierte die Kerninhalte der folgenden Zertifizierungskurse:",
+      "CompTIA A+ (Computerhardware, Software, Fehlerbehebung)",
+      "CompTIA Network+ (Netzwerkgrundlagen, Protokolle, Geräte und Sicherheit)",
+      "CompTIA Security+ (Grundlegende Sicherheitskonzepte, Bedrohungen und Schadensbegrenzung)",
+      "Cisco CCNA (Routing, Switching, IP-Adressierung, VLANs, OSPF)",
+      "Praktische Laborerfahrung mit Packet Tracer, GNS3 und VirtualBox"
+    ],
 
-header {
-  background: transparent;
-  padding: 3rem 1rem 2rem;
-  text-align: center;
-}
-
-header img {
-  width: 230px;
-  height: 210px;
-  border-radius: 60%;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1rem;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  margin: 0;
-  color: #111827;
-}
-
-header h2 {
-  font-size: 1.5rem;
-  margin: 0.5rem 0 0;
-  color: #000000;
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  z-index: 1000;
-}
-
-nav button {
-  padding: 0.5rem 1.2rem;
-  border: none;
-  background: linear-gradient(to right, #3b82f6, #06b6d4);
-  color: white;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-nav button:hover {
-  transform: scale(1.05);
-}
-
-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.card {
-  background: white;
-  margin: 2rem 0;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-/* Skills List Styles */
-#skills-list-container {
-  text-align: left;
-  padding: 0 20px;
-}
-
-#skills-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-#skills-list li {
-  padding: 10px 0;
-  position: relative;
-  padding-left: 25px;
-  line-height: 1.6;
-  border-bottom: 1px solid #eee;
-}
-
-#skills-list li:before {
-  content: "-";
-  color: #000000;
-  position: absolute;
-  left: 0;
-}
-
-#skills-list li:last-child {
-  border-bottom: none;
-}
-
-#courses-list-container {
-  text-align: left;
-  padding: 0 20px;
-}
-
-#courses-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-#courses-list li {
-  padding: 10px 0;
-  position: relative;
-  padding-left: 25px;
-  line-height: 1.6;
-  border-bottom: 1px solid #eee;
-}
-
-#courses-list li:before {
-  content: "-";
-  color: #000000;
-  position: absolute;
-  left: 0;
-}
-
-#courses-list li:last-child {
-  border-bottom: none;
-}
-
-/* Projects Cover Styles */
-.projects-cover {
-  position: relative;
-  cursor: pointer;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-  margin-top: 20px;
-}
-
-.projects-cover:hover {
-  transform: scale(1.02);
-}
-
-.projects-cover img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-.cover-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-}
-
-.cover-overlay h3 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.cover-overlay p {
-  font-size: 1rem;
-  opacity: 0.9;
-}
-
-/* Projects Gallery Lightbox */
-.projects-lightbox {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  overflow-y: auto;
-  animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.gallery-content {
-  background: white;
-  margin: 60px auto;
-  padding: 30px;
-  width: 80%;
-  max-width: 900px;
-  border-radius: 15px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.close-gallery {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  color: #000000;
-  font-size: 35px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.close-gallery:hover {
-  color: #2563eb;
-}
-
-.gallery-content h3 {
-  text-align: center;
-  color: #2563eb;
-  margin-bottom: 30px;
-  font-size: 2rem;
-}
-
-.project-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.gallery-project {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background: #f8fafc;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.project-image {
-  text-align: center;
-}
-
-.project-image img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  max-height: 300px;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.project-image img:hover {
-  transform: scale(1.03);
-}
-
-.project-info {
-  text-align: center;
-}
-
-.project-info h4 {
-  color: #1e40af;
-  margin-bottom: 10px;
-}
-
-.project-info p {
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.project-skills {
-  background: #eef2ff;
-  padding: 10px 15px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.project-skills h5 {
-  color: #1e40af;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
-}
-
-.project-skills p {
-  color: #4b5563;
-  font-size: 0.9rem;
-  margin-bottom: 0;
-}
-
-.download-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background: linear-gradient(to right, #10b981, #059669);
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: background 0.3s;
-}
-
-.download-btn:hover {
-  background: linear-gradient(to right, #059669, #10b981);
-}
-
-/* Lightbox Custom Styles */
-.lightbox .lb-container {
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-}
-
-.lightbox .lb-image {
-  border: 5px solid white;
-  border-radius: 5px;
-}
-
-.lightbox .lb-data .lb-details {
-  width: 100%;
-  padding: 15px;
-  text-align: center;
-}
-
-.lightbox .lb-caption {
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-/* Footer & Other Elements */
-footer {
-  background-color: #111827;
-  color: white;
-  text-align: center;
-  padding: 2rem 1rem;
-  margin-top: 2rem;
-  font-size: 0.9rem;
-}
-
-.cv-btn {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  background: linear-gradient(to right, #2563eb, #1d4ed8);
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  margin-top: 1rem;
-  transition: background 0.3s ease;
-}
-
-.cv-btn:hover {
-  background: linear-gradient(to right, #1d4ed8, #2563eb);
-}
-
-a {
-  color: #3b82f6;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #1d4ed8;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
+      contact: "Kontakt",
+      cv: "Lebenslauf herunterladen",
+      email: "E-Mail: ehab.ali.gomaa256@gmail.com",
+      linkedin: "LinkedIn: linkedin.com/in/ehabali25",
+      github: "Github: www.github.com/Mre25",
+      footer: "© 2025 Ehab Ali Gomaa. Alle Rechte vorbehalten.",
+      project1Title: "Netzwerkkonzeption mit zwei Switches und VLAN-Implementierung",
+      project1Description: "In diesem Projekt wurde ein Netzwerk mit zwei Switches entworfen, die über eine Trunk-Verbindung miteinander verbunden sind. Die Endgeräte wurden auf beide Switches verteilt und verschiedenen VLANs je nach Abteilung zugeordnet. Ziel war es, die Netzwerkleistung und Sicherheit durch logische Segmentierung zu verbessern. Trunk-Ports wurden konfiguriert, um die VLAN-Kommunikation zwischen den Switches zu ermöglichen.",
+      project1Skills: "VLAN-Konfiguration, Einrichtung von Access- und Trunk-Ports, Switch-zu-Switch-Trunking, Netzwerksegmentierung",
+      project2Title: "Netzwerkkonzeption mit drei Routern und statischem Routing",
+      project2Description: "Dieses Projekt umfasst die Gestaltung einer Netzwerktopologie mit drei Routern, die über serielle Schnittstellen verbunden sind, um die WAN-Kommunikation zu simulieren. Jeder Router ist mit einem eigenen LAN verbunden, und es wurde statisches Routing konfiguriert, um die Kommunikation zwischen den Netzwerken zu ermöglichen. Diese Struktur spiegelt reale Filialverbindungen über entfernte Standorte wider.",
+      project2Skills: "Konfiguration von statischem Routing, Einrichtung serieller Schnittstellen, Subnetting, WAN-Konzepte",
+      project3Title: "VLAN-Implementierung mit Inter-VLAN-Routing",
+      project3Description: "Dieses Projekt beinhaltet eine umfassende VLAN-Struktur innerhalb eines LANs. Die Endgeräte wurden nach Abteilungen mithilfe von VLANs segmentiert. Für die Kommunikation zwischen den VLANs wurde das 'Router-on-a-Stick'-Verfahren implementiert, wobei die Kommunikation über eine einzige Router-Schnittstelle erfolgt. Dieses Projekt zeigt die praktische Anwendung von VLANs in Unternehmensnetzwerken.",
+      project3Skills: "VLAN- und Inter-VLAN-Routing, Konfiguration von Access- und Trunk-Ports, Implementierung von Router-on-a-Stick, Netzwerktests (Ping, CLI-Befehle)",
+      project4Title: "Netzwerkdesign mit drei Routern und Subnetz-Segmentierung",
+      project4Description: "In diesem Projekt wurde ein Netzwerk mit drei Routern entworfen, wobei jeder Router mit einem lokalen Switch und einer Gruppe von PCs verbunden ist. Das Netzwerk ist in drei Haupt-Subnetze unterteilt, die jeweils eine Abteilung oder einen Standort repräsentieren. Die Router sind über Punkt-zu-Punkt-Verbindungen miteinander verbunden, um die Kommunikation zwischen den Subnetzen zu ermöglichen. Jedes Subnetz verwendet eine /18-Subnetzmaske für eine effiziente IP-Verwaltung und Skalierbarkeit.",
+      project4Skills: "IP-Subnetting, Router-Konfiguration, Switch-Einrichtung, Inter-Router-Kommunikation, Netzwerksegmentierung",
+    }
+  };
+  
+  let currentLanguage = 'en';
+  
+  function updateSkillsList() {
+    const skillsList = document.getElementById('skills-list');
+    skillsList.innerHTML = content[currentLanguage].skillsItems
+      .map(item => <li>${item}</li>)
+      .join('');
+  }
+  function updateCoursesList() {
+    const coursesList = document.getElementById('courses-list');
+    coursesList.innerHTML = content[currentLanguage].coursesItems
+      .map(item => <li>${item}</li>)
+      .join('');
   }
   
-  .gallery-content {
-    width: 90%;
-    padding: 20px;
+  function setLanguage(lang) {
+    currentLanguage = lang;
+    const langContent = content[lang];
+  
+    // Update text elements
+    const textElements = {
+      'name': langContent.name,
+      'jobname': langContent.jobname,
+      'title': langContent.title,
+      'about': langContent.about,
+      'skills-title': langContent.skills,
+      'projects-title': langContent.projects,
+      'all-projects-text': langContent.allProjects,
+      'click-to-view-text': langContent.clickToView,
+      'my-projects-text': langContent.myProjects,
+      'skills-used-text': langContent.skillsUsed,
+      'download-project1-text': langContent.downloadProject,
+      'download-project2-text': langContent.downloadProject,
+      'download-project3-text': langContent.downloadProject,
+      'courses-title': langContent.courses,
+      'contact-title': langContent.contact,
+      'cv-btn': langContent.cv,
+      'footer-text': langContent.footer,
+      'project1-title': langContent.project1Title,
+      'project1-description': langContent.project1Description,
+      'project1-skills': langContent.project1Skills,
+      'project2-title': langContent.project2Title,
+      'project2-description': langContent.project2Description,
+      'project2-skills': langContent.project2Skills,
+      'project3-title': langContent.project3Title,
+      'project3-description': langContent.project3Description,
+      'project3-skills': langContent.project3Skills,
+      'project4-title': langContent.project4Title,
+      'project4-description': langContent.project4Description,
+      'project4-skills': langContent.project4Skills
+    };
+  
+    for (const [id, text] of Object.entries(textElements)) {
+      const element = document.getElementById(id);
+      if (element) {
+        if (id === 'about') {
+          element.innerHTML = text;
+        } else {
+          element.textContent = text;
+        }
+      }
+    }
+  
+    // Update contact links
+    document.getElementById('email-text').innerHTML = 
+      langContent.email.replace(': ', ': <a href="mailto:ehab.ali.gomaa256@gmail.com">') + '</a>';
+    
+    document.getElementById('linkedin-text').innerHTML = 
+      langContent.linkedin.replace(': ', ': <a href="https://linkedin.com/in/ehab-ali25" target="_blank">') + '</a>';
+    
+    document.getElementById('github-text').innerHTML = 
+      langContent.github.replace(': ', ': <a href="https://www.github.com/Mre25" target="_blank">') + '</a>';
+  
+    // Update lightbox titles
+    document.querySelector('.project-image a[href="photos/2swi.jpeg"]').setAttribute('data-title', 
+      ${langContent.project1Title} - ${langContent.myProjects});
+    document.querySelector('.project-image a[href="photos/3rou.jpeg"]').setAttribute('data-title', 
+      ${langContent.project2Title} - ${langContent.myProjects});
+    document.querySelector('.project-image a[href="photos/vlan.jpeg"]').setAttribute('data-title', 
+      ${langContent.project3Title} - ${langContent.myProjects});
+  
+    // Update skills list
+    updateSkillsList();
+    updateCoursesList();
   }
   
-  section {
-    padding: 1rem;
+  function openProjectsGallery() {
+    document.getElementById('projects-gallery').style.display = 'block';
+    document.body.style.overflow = 'hidden';
   }
   
-  .card {
-    padding: 1.5rem;
+  function closeProjectsGallery() {
+    document.getElementById('projects-gallery').style.display = 'none';
+    document.body.style.overflow = 'auto';
   }
   
-  .lightbox .lb-container {
-    padding: 10px;
-  }
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize lightbox
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'showImageNumberLabel': false,
+      'alwaysShowNavOnTouchDevices': true,
+      'albumLabel': 'Project %1 of %2'
+    });
   
-  nav button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
+    // Set initial language
+    setLanguage('en');
   
-  .project-image img {
-    max-height: 200px;
-  }
-}
+    // Close gallery when clicking outside content
+    document.addEventListener('click', function(event) {
+      const gallery = document.getElementById('projects-gallery');
+      if (event.target === gallery) {
+        closeProjectsGallery();
+      }
+    });
+  
+    // Close gallery with ESC key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeProjectsGallery();
+      }
+    });
+
+  });
