@@ -135,5 +135,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
   <script src="script.js"></script>
+  <!-- رابط لوحة الإدارة (يمكن وضعه في footer أو مكان مناسب) -->
+<div style="text-align: center; margin: 20px;">
+  <a href="/admin" style="background: #00C7B7; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+    Admin Panel
+  </a>
+</div>
+
+<!-- Netlify Identity Widget -->
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
+
