@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio CMS - Live Editor</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .cms-container {
+            width: 100%;
+            max-width: 1400px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            display: none;
+        }
+        
+        .login-screen {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-screen h1 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .login-screen p {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .cms-header {
+            background: linear-gradient(to right, #1e40af, #3b82f6);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-left h1 {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .cms-main {
+            display: flex;
+            min-height: 800px;
+        }
+        
+        .cms-sidebar {
+            width: 280px;
+            background: var(--light);
+            border-right: 1px solid #e5e7eb;
+            padding: 25px 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 25px;
+            color: #4b5563;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: #f3f4f6;
+            color: var(--primary);
+        }
+        
+        .nav-item.active {
+            background: #eff6ff;
+            color: var(--primary);
+            border-left-color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .cms-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            max-height: 800px;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .section-header h2 {
+            color: var(--dark);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .form-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+        
+        .form-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-card h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .lang-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 15px;
+        }
+        
+        .lang-tab {
+            padding: 8px 20px;
+            border: none;
+            background: #f3f4f6;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .lang-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .list-editor {
+            margin-top: 20px;
+        }
+        
+        .list-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .list-item input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+        }
+        
+        .list-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .list-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 8px;
+            background: #f3f4f6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .list-btn:hover {
+            background: #e5e7eb;
+        }
+        
+        .list-btn.delete:hover {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        
+        .add-item-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #dbeafe;
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .add-item-btn:hover {
+            background: #bfdbfe;
+        }
+        
+        .status-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            background: var(--dark);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .status-bar.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .status-bar.success {
+            background: var(--success);
+        }
+        
+        .status-bar.error {
+            background: var(--danger);
+        }
+        
+        .status-bar.info {
+            background: var(--primary);
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e5e7eb;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .preview-panel {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .preview-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .preview-content pre {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cms-main {
+                flex-direction: column;
+            }
+            
+            .cms-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شاشة تسجيل الدخول -->
+    <div class="login-screen" id="loginScreen">
+        <h1>🔐 Portfolio CMS</h1>
+        <p>Sign in to edit your portfolio content</p>
+        
+        <div class="input-group">
+            <label><i class="fas fa-user"></i> GitHub Username</label>
+            <input type="text" id="username" placeholder="Your GitHub username">
+        </div>
+        
+        <div class="input-group">
+            <label><i class="fas fa-key"></i> Personal Access Token</label>
+            <input type="password" id="token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+            <small style="color: #6b7280; display: block; margin-top: 5px;">
+                Create token at: github.com/settings/tokens (select "repo" scope)
+            </small>
+        </div>
+        
+        <button class="btn btn-primary" onclick="login()">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        
+        <div style="margin-top: 30px; padding: 15px; background: #f0f9ff; border-radius: 10px; border-left: 4px solid var(--primary);">
+            <h4 style="color: #1e40af; margin-bottom: 10px;"><i class="fas fa-info-circle"></i> How to get token?</h4>
+            <ol style="color: #4b5563; line-height: 1.6; font-size: 14px; padding-left: 20px;">
+                <li>Go to GitHub Settings → Developer settings → Personal access tokens</li>
+                <li>Click "Generate new token" → "Generate new token (classic)"</li>
+                <li>Select "repo" (Full control of private repositories)</li>
+                <li>Copy the generated token (it starts with ghp_)</li>
+            </ol>
+        </div>
+    </div>
+    
+    <!-- لوحة التحكم الرئيسية -->
+    <div class="cms-container" id="cmsContainer">
+        <!-- الهيدر -->
+        <div class="cms-header">
+            <div class="header-left">
+                <h1><i class="fas fa-cogs"></i> Portfolio Content Manager</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">E</div>
+                    <span id="userName">User</span>
+                </div>
+                <button class="btn btn-outline" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <!-- المحتوى الرئيسي -->
+        <div class="cms-main">
+            <!-- السايدبار -->
+            <div class="cms-sidebar">
+                <a href="#" class="nav-item active" onclick="showSection('personal')">
+                    <i class="fas fa-user"></i> Personal Info
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('about')">
+                    <i class="fas fa-file-alt"></i> About Me
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('skills')">
+                    <i class="fas fa-star"></i> Skills
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('courses')">
+                    <i class="fas fa-graduation-cap"></i> Courses
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('projects')">
+                    <i class="fas fa-project-diagram"></i> Projects
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('save')">
+                    <i class="fas fa-save"></i> Save & Publish
+                </a>
+            </div>
+            
+            <!-- المحتوى الديناميكي -->
+            <div class="cms-content">
+                <!-- قسم المعلومات الشخصية -->
+                <div class="content-section active" id="personalSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user"></i> Personal Information</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> English</h3>
+                            <div class="input-group">
+                                <label>Full Name</label>
+                                <input type="text" id="enName" placeholder="Ehab Shalaby">
+                            </div>
+                            <div class="input-group">
+                                <label>Job Title</label>
+                                <input type="text" id="enJobname" placeholder="IT & Networking | Focus on Cybersecurity">
+                            </div>
+                        </div>
+                        
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> German</h3>
+                            <div class="input-group">
+                                <label>Full Name</label>
+                                <input type="text" id="deName" placeholder="Ehab Shalaby">
+                            </div>
+                            <div class="input-group">
+                                <label>Job Title</label>
+                                <input type="text" id="deJobname" placeholder="IT- und Netzwerktechnik | Schwerpunkt Cybersecurity">
+                            </div>
+                        </div>
+                        
+                        <div class="form-card">
+                            <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+                            <div class="input-group">
+                                <label>Email Address</label>
+                                <input type="email" id="email" placeholder="ehab.ali.gomaa256@gmail.com">
+                            </div>
+                            <div class="input-group">
+                                <label>LinkedIn URL</label>
+                                <input type="url" id="linkedin" placeholder="https://linkedin.com/in/ehabali25">
+                            </div>
+                            <div class="input-group">
+                                <label>GitHub URL</label>
+                                <input type="url" id="github" placeholder="https://github.com/Mre25">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم About Me -->
+                <div class="content-section" id="aboutSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-file-alt"></i> About Me Content</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> English</h3>
+                            <div class="input-group">
+                                <label>About Me Text (HTML supported)</label>
+                                <textarea id="enAbout" rows="12" placeholder="I'm Ehab Ali Shalaby, an IT and network enthusiast..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> German</h3>
+                            <div class="input-group">
+                                <label>About Me Text (HTML supported)</label>
+                                <textarea id="deAbout" rows="12" placeholder="Ich heiße Shalaby, Ehab Ali und bin ein IT- und Netzwerk-Enthusiast..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم المهارات -->
+                <div class="content-section" id="skillsSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-star"></i> Skills Management</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> English Skills</h3>
+                            <div class="input-group">
+                                <label>Skills Title</label>
+                                <input type="text" id="enSkillsTitle" value="Skills">
+                            </div>
+                            <div class="list-editor">
+                                <label>Skills List</label>
+                                <div id="enSkillsList">
+                                    <!-- Dynamic list items will be added here -->
+                                </div>
+                                <button class="add-item-btn" onclick="addSkillItem('en')">
+                                    <i class="fas fa-plus"></i> Add Skill
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> German Skills</h3>
+                            <div class="input-group">
+                                <label>Skills Title</label>
+                                <input type="text" id="deSkillsTitle" value="Fähigkeiten">
+                            </div>
+                            <div class="list-editor">
+                                <label>Skills List</label>
+                                <div id="deSkillsList">
+                                    <!-- Dynamic list items will be added here -->
+                                </div>
+                                <button class="add-item-btn" onclick="addSkillItem('de')">
+                                    <i class="fas fa-plus"></i> Add Skill
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم الكورسات -->
+                <div class="content-section" id="coursesSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-graduation-cap"></i> Courses Management</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> English Courses</h3>
+                            <div class="input-group">
+                                <label>Courses Title</label>
+                                <input type="text" id="enCoursesTitle" value="Courses & Self-Study">
+                            </div>
+                            <div class="list-editor">
+                                <label>Courses List</label>
+                                <div id="enCoursesList">
+                                    <!-- Dynamic list items will be added here -->
+                                </div>
+                                <button class="add-item-btn" onclick="addCourseItem('en')">
+                                    <i class="fas fa-plus"></i> Add Course
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-card">
+                            <h3><i class="fas fa-language"></i> German Courses</h3>
+                            <div class="input-group">
+                                <label>Courses Title</label>
+                                <input type="text" id="deCoursesTitle" value="Kurse & Selbststudium">
+                            </div>
+                            <div class="list-editor">
+                                <label>Courses List</label>
+                                <div id="deCoursesList">
+                                    <!-- Dynamic list items will be added here -->
+                                </div>
+                                <button class="add-item-btn" onclick="addCourseItem('de')">
+                                    <i class="fas fa-plus"></i> Add Course
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم المشاريع -->
+                <div class="content-section" id="projectsSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-project-diagram"></i> Projects Management</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-card">
+                            <h3><i class="fas fa-cog"></i> Projects Settings</h3>
+                            <div class="input-group">
+                                <label>Projects Title (English)</label>
+                                <input type="text" id="enProjectsTitle" value="Projects">
+                            </div>
+                            <div class="input-group">
+                                <label>Projects Title (German)</label>
+                                <input type="text" id="deProjectsTitle" value="Projekte">
+                            </div>
+                        </div>
+                        
+                        <div class="form-card">
+                            <h3><i class="fas fa-list"></i> Projects List</h3>
+                            <div id="projectsListContainer">
+                                <!-- Dynamic projects will be added here -->
+                            </div>
+                            <button class="add-item-btn" onclick="addProject()" style="margin-top: 20px;">
+                                <i class="fas fa-plus"></i> Add New Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم الحفظ والنشر -->
+                <div class="content-section" id="saveSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-save"></i> Save & Publish Changes</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-card">
+                            <h3><i class="fas fa-rocket"></i> Publish to GitHub</h3>
+                            <p style="color: #6b7280; margin-bottom: 20px;">
+                                Click the button below to save all changes directly to your GitHub repository.
+                                The changes will be live on your portfolio within seconds.
+                            </p>
+                            <button class="btn btn-primary" onclick="saveAllChanges()" style="width: 100%; padding: 16px;">
+                                <i class="fas fa-cloud-upload-alt"></i> Publish All Changes
+                            </button>
+                            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 10px;">
+                                <h4 style="color: #1e40af; margin-bottom: 10px;"><i class="fas fa-history"></i> Last Update</h4>
+                                <p id="lastUpdateTime" style="color: #4b5563;">No updates yet</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-card">
+                            <h3><i class="fas fa-eye"></i> Preview Changes</h3>
+                            <p style="color: #6b7280; margin-bottom: 20px;">
+                                Preview the generated JSON data before publishing.
+                            </p>
+                            <button class="btn btn-outline" onclick="previewData()" style="width: 100%; margin-bottom: 20px;">
+                                <i class="fas fa-code"></i> Preview JSON Data
+                            </button>
+                            
+                            <div class="preview-panel">
+                                <div class="preview-header">
+                                    <h4 style="color: var(--dark);">Generated Data Preview</h4>
+                                    <button class="btn btn-success" onclick="downloadJSON()">
+                                        <i class="fas fa-download"></i> Download JSON
+                                    </button>
+                                </div>
+                                <div class="preview-content">
+                                    <pre id="jsonPreview">Click "Preview JSON Data" to generate preview</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- شريط الحالة -->
+    <div class="status-bar" id="statusBar">
+        <i class="fas fa-check-circle"></i>
+        <span id="statusText">Status message</span>
+    </div>
+    
+    <!-- شاشة التحميل -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+        // المتغيرات العامة
+        let githubToken = '';
+        let githubUser = '';
+        let portfolioData = {};
+        
+        // دالة تسجيل الدخول
+        async function login() {
+            const username = document.getElementById('username').value.trim();
+            const token = document.getElementById('token').value.trim();
+            
+            if (!username || !token) {
+                showStatus('Please enter both username and token', 'error');
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                // اختبار صحة التوكن
+                const response = await fetch('https://api.github.com/user', {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const userData = await response.json();
+                    
+                    // حفظ بيانات المستخدم
+                    githubToken = token;
+                    githubUser = username;
+                    
+                    // عرض لوحة التحكم
+                    document.getElementById('loginScreen').style.display = 'none';
+                    document.getElementById('cmsContainer').style.display = 'block';
+                    
+                    // تحميل البيانات الحالية
+                    await loadPortfolioData();
+                    
+                    // تحديث معلومات المستخدم
+                    document.getElementById('userName').textContent = userData.name || username;
+                    document.getElementById('userAvatar').textContent = (userData.name || username).charAt(0).toUpperCase();
+                    
+                    showStatus('Successfully logged in!', 'success');
+                } else {
+                    throw new Error('Invalid token or username');
+                }
+            } catch (error) {
+                showStatus(`Login failed: ${error.message}`, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // دالة تسجيل الخروج
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                githubToken = '';
+                githubUser = '';
+                portfolioData = {};
+                
+                document.getElementById('cmsContainer').style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'block';
+                
+                // مسح حقول الدخول
+                document.getElementById('username').value = '';
+                document.getElementById('token').value = '';
+                
+                showStatus('Logged out successfully', 'info');
+            }
+        }
+        
+        // دالة تحميل بيانات البرتفوليو الحالية
+        async function loadPortfolioData() {
+            showLoading(true);
+            
+            try {
+                // جلب ملف script.js الحالي من GitHub
+                const scriptUrl = `https://api.github.com/repos/${githubUser}/portfolio/contents/script.js`;
+                
+                const response = await fetch(scriptUrl, {
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const fileData = await response.json();
+                    const scriptContent = atob(fileData.content);
+                    
+                    // استخراج كائن content من السكريبت
+                    const match = scriptContent.match(/const content = (\{[\s\S]*?\});/);
+                    
+                    if (match && match[1]) {
+                        portfolioData = JSON.parse(match[1].replace(/'/g, '"').replace(/\n/g, ' '));
+                        populateFormData();
+                        showStatus('Portfolio data loaded successfully!', 'success');
+                    } else {
+                        throw new Error('Could not find content data');
+                    }
+                } else {
+                    // إذا لم يوجد ملف، نبدأ ببيانات افتراضية
+                    portfolioData = getDefaultData();
+                    populateFormData();
+                    showStatus('Starting with default data', 'info');
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                portfolioData = getDefaultData();
+                populateFormData();
+                showStatus('Using default data', 'info');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // بيانات افتراضية
+        function getDefaultData() {
+            return {
+                en: {
+                    name: "Ehab Shalaby",
+                    jobname: "IT & Networking | Focus on Cybersecurity",
+                    title: "About Me",
+                    about: "I'm Ehab Ali Shalaby, an IT and network enthusiast...",
+                    skills: "Skills",
+                    skillsItems: ["Networking Fundamentals: IP addressing, subnetting..."],
+                    projects: "Projects",
+                    allProjects: "All Projects Here",
+                    clickToView: "Click to view all my network projects",
+                    myProjects: "My Projects",
+                    skillsUsed: "Skills Used",
+                    downloadProject: "Download Project",
+                    courses: "Courses & Self-Study",
+                    coursesItems: ["Studied the core content of the following certification tracks..."],
+                    contact: "Contact",
+                    cv: "Download CV",
+                    email: "E-Mail: ehab.ali.gomaa256@gmail.com",
+                    linkedin: "LinkedIn: linkedin.com/in/ehabali25",
+                    github: "Github: www.github.com/Mre25",
+                    footer: "© 2025 Ehab Ali Shalaby. All rights reserved.",
+                    project1Title: "Network Design with Two Switches and VLAN Implementation",
+                    project1Description: "In this project, a network was designed...",
+                    project1Skills: "VLAN Configuration, Access and Trunk Port Setup..."
+                },
+                de: {
+                    name: "Ehab Shalaby",
+                    jobname: "IT- und Netzwerktechnik | Schwerpunkt Cybersecurity",
+                    title: "Über mich",
+                    about: "Ich heiße Shalaby, Ehab Ali und bin ein IT- und Netzwerk-Enthusiast...",
+                    skills: "Fähigkeiten",
+                    skillsItems: ["Netzwerkgrundlagen: IP-Adressierung, Subnetting..."],
+                    projects: "Projekte",
+                    allProjects: "Alle Projekte hier",
+                    clickToView: "Klicken Sie, um alle meine Netzwerkprojekte anzuzeigen",
+                    myProjects: "Meine Projekte",
+                    skillsUsed: "Verwendete Fähigkeiten",
+                    downloadProject: "Projekt herunterladen",
+                    courses: "Kurse & Selbststudium",
+                    coursesItems: ["Studierte die Kerninhalte der folgenden Zertifizierungskurse..."],
+                    contact: "Kontakt",
+                    cv: "Lebenslauf herunterladen",
+                    email: "E-Mail: ehab.ali.gomaa256@gmail.com",
+                    linkedin: "LinkedIn: linkedin.com/in/ehabali25",
+                    github: "Github: www.github.com/Mre25",
+                    footer: "© 2025 Ehab Ali Gomaa. Alle Rechte vorbehalten.",
+                    project1Title: "Netzwerkkonzeption mit zwei Switches und VLAN-Implementierung",
+                    project1Description: "In diesem Projekt wurde ein Netzwerk...",
+                    project1Skills: "VLAN-Konfiguration, Einrichtung von Access- und Trunk-Ports..."
+                }
+            };
+        }
+        
+        // تعبئة النموذج بالبيانات
+        function populateFormData() {
+            // البيانات الشخصية
+            document.getElementById('enName').value = portfolioData.en?.name || '';
+            document.getElementById('enJobname').value = portfolioData.en?.jobname || '';
+            document.getElementById('deName').value = portfolioData.de?.name || '';
+            document.getElementById('deJobname').value = portfolioData.de?.jobname || '';
+            
+            // معلومات الاتصال
+            const email = portfolioData.en?.email?.replace('E-Mail: ', '') || '';
+            const linkedin = portfolioData.en?.linkedin?.replace('LinkedIn: ', '') || '';
+            const githubUrl = portfolioData.en?.github?.replace('Github: ', '') || '';
+            
+            document.getElementById('email').value = email;
+            document.getElementById('linkedin').value = linkedin;
+            document.getElementById('github').value = githubUrl;
+            
+            // About Me
+            document.getElementById('enAbout').value = portfolioData.en?.about || '';
+            document.getElementById('deAbout').value = portfolioData.de?.about || '';
+            
+            // المهارات
+            document.getElementById('enSkillsTitle').value = portfolioData.en?.skills || 'Skills';
+            document.getElementById('deSkillsTitle').value = portfolioData.de?.skills || 'Fähigkeiten';
+            
+            renderSkillsList('en', portfolioData.en?.skillsItems || []);
+            renderSkillsList('de', portfolioData.de?.skillsItems || []);
+            
+            // الكورسات
+            document.getElementById('enCoursesTitle').value = portfolioData.en?.courses || 'Courses & Self-Study';
+            document.getElementById('deCoursesTitle').value = portfolioData.de?.courses || 'Kurse & Selbststudium';
+            
+            renderCoursesList('en', portfolioData.en?.coursesItems || []);
+            renderCoursesList('de', portfolioData.de?.coursesItems || []);
+            
+            // المشاريع
+            document.getElementById('enProjectsTitle').value = portfolioData.en?.projects || 'Projects';
+            document.getElementById('deProjectsTitle').value = portfolioData.de?.projects || 'Projekte';
+            
+            renderProjectsList();
+        }
+        
+        // عرض قائمة المهارات
+        function renderSkillsList(lang, items) {
+            const container = document.getElementById(`${lang}SkillsList`);
+            container.innerHTML = '';
+            
+            items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <input type="text" value="${item}" onchange="updateSkillItem('${lang}', ${index}, this.value)">
+                    <div class="list-actions">
+                        <button class="list-btn" onclick="moveSkillUp('${lang}', ${index})">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                        <button class="list-btn" onclick="moveSkillDown('${lang}', ${index})">
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                        <button class="list-btn delete" onclick="removeSkillItem('${lang}', ${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        // إضافة مهارة جديدة
+        function addSkillItem(lang) {
+            if (!portfolioData[lang]) portfolioData[lang] = {};
+            if (!portfolioData[lang].skillsItems) portfolioData[lang].skillsItems = [];
+            
+            portfolioData[lang].skillsItems.push('New Skill');
+            renderSkillsList(lang, portfolioData[lang].skillsItems);
+        }
+        
+        // تحديث مهارة
+        function updateSkillItem(lang, index, value) {
+            portfolioData[lang].skillsItems[index] = value;
+        }
+        
+        // حذف مهارة
+        function removeSkillItem(lang, index) {
+            portfolioData[lang].skillsItems.splice(index, 1);
+            renderSkillsList(lang, portfolioData[lang].skillsItems);
+        }
+        
+        // نقل مهارة للأعلى
+        function moveSkillUp(lang, index) {
+            if (index > 0) {
+                const items = portfolioData[lang].skillsItems;
+                [items[index], items[index - 1]] = [items[index - 1], items[index]];
+                renderSkillsList(lang, items);
+            }
+        }
+        
+        // نقل مهارة للأسفل
+        function moveSkillDown(lang, index) {
+            const items = portfolioData[lang].skillsItems;
+            if (index < items.length - 1) {
+                [items[index], items[index + 1]] = [items[index + 1], items[index]];
+                renderSkillsList(lang, items);
+            }
+        }
+        
+        // نفس الدوال للكورسات (يمكنك إنشاء دالة عامة)
+        function renderCoursesList(lang, items) {
+            const container = document.getElementById(`${lang}CoursesList`);
+            container.innerHTML = '';
+            
+            items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <input type="text" value="${item}" onchange="updateCourseItem('${lang}', ${index}, this.value)">
+                    <div class="list-actions">
+                        <button class="list-btn" onclick="moveCourseUp('${lang}', ${index})">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                        <button class="list-btn" onclick="moveCourseDown('${lang}', ${index})">
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                        <button class="list-btn delete" onclick="removeCourseItem('${lang}', ${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        function addCourseItem(lang) {
+            if (!portfolioData[lang]) portfolioData[lang] = {};
+            if (!portfolioData[lang].coursesItems) portfolioData[lang].coursesItems = [];
+            
+            portfolioData[lang].coursesItems.push('New Course');
+            renderCoursesList(lang, portfolioData[lang].coursesItems);
+        }
+        
+        function updateCourseItem(lang, index, value) {
+            portfolioData[lang].coursesItems[index] = value;
+        }
+        
+        function removeCourseItem(lang, index) {
+            portfolioData[lang].coursesItems.splice(index, 1);
+            renderCoursesList(lang, portfolioData[lang].coursesItems);
+        }
+        
+        // عرض المشاريع
+        function renderProjectsList() {
+            // هنا يمكنك إضافة كود لعرض المشاريع بشكل ديناميكي
+        }
+        
+        function addProject() {
+            // إضافة مشروع جديد
+        }
+        
+        // دالة حفظ كل التغييرات
+        async function saveAllChanges() {
+            if (!confirm('Are you sure you want to publish all changes to your portfolio?')) {
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                // تحديث البيانات من النموذج
+                updateDataFromForm();
+                
+                // إنشاء محتوى script.js الجديد
+                const scriptContent = generateScriptContent();
+                
+                // رفع الملف إلى GitHub
+                await updateFileOnGitHub('script.js', scriptContent);
+                
+                // تحديث وقت آخر تعديل
+                const now = new Date();
+                document.getElementById('lastUpdateTime').textContent = 
+                    `Last published: ${now.toLocaleString()}`;
+                
+                showStatus('All changes published successfully! Your portfolio is now updated.', 'success');
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // تحديث البيانات من النموذج
+        function updateDataFromForm() {
+            // تحديث البيانات الشخصية
+            portfolioData.en.name = document.getElementById('enName').value;
+            portfolioData.en.jobname = document.getElementById('enJobname').value;
+            portfolioData.de.name = document.getElementById('deName').value;
+            portfolioData.de.jobname = document.getElementById('deJobname').value;
+            
+            // تحديث معلومات الاتصال
+            const email = document.getElementById('email').value;
+            const linkedin = document.getElementById('linkedin').value;
+            const githubUrl = document.getElementById('github').value;
+            
+            portfolioData.en.email = `E-Mail: ${email}`;
+            portfolioData.en.linkedin = `LinkedIn: ${linkedin}`;
+            portfolioData.en.github = `Github: ${githubUrl}`;
+            portfolioData.de.email = `E-Mail: ${email}`;
+            portfolioData.de.linkedin = `LinkedIn: ${linkedin}`;
+            portfolioData.de.github = `Github: ${githubUrl}`;
+            
+            // تحديث About Me
+            portfolioData.en.about = document.getElementById('enAbout').value;
+            portfolioData.de.about = document.getElementById('deAbout').value;
+            
+            // تحديث عناوين المهارات
+            portfolioData.en.skills = document.getElementById('enSkillsTitle').value;
+            portfolioData.de.skills = document.getElementById('deSkillsTitle').value;
+            
+            // تحديث عناوين الكورسات
+            portfolioData.en.courses = document.getElementById('enCoursesTitle').value;
+            portfolioData.de.courses = document.getElementById('deCoursesTitle').value;
+            
+            // تحديث عناوين المشاريع
+            portfolioData.en.projects = document.getElementById('enProjectsTitle').value;
+            portfolioData.de.projects = document.getElementById('deProjectsTitle').value;
+        }
+        
+        // إنشاء محتوى script.js
+        function generateScriptContent() {
+            return `const content = ${JSON.stringify(portfolioData, null, 2)};
+
+let currentLanguage = 'en';
+
+function updateSkillsList() {
+  const skillsList = document.getElementById('skills-list');
+  skillsList.innerHTML = content[currentLanguage].skillsItems
+    .map(item => \`<li>\${item}</li>\`)
+    .join('');
+}
+
+function updateCoursesList() {
+  const coursesList = document.getElementById('courses-list');
+  coursesList.innerHTML = content[currentLanguage].coursesItems
+    .map(item => \`<li>\${item}</li>\`)
+    .join('');
+}
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  const langContent = content[lang];
+
+  // Update text elements
+  const textElements = {
+    'name': langContent.name,
+    'jobname': langContent.jobname,
+    'title': langContent.title,
+    'about': langContent.about,
+    'skills-title': langContent.skills,
+    'projects-title': langContent.projects,
+    'all-projects-text': langContent.allProjects,
+    'click-to-view-text': langContent.clickToView,
+    'my-projects-text': langContent.myProjects,
+    'skills-used-text': langContent.skillsUsed,
+    'download-project1-text': langContent.downloadProject,
+    'download-project2-text': langContent.downloadProject,
+    'download-project3-text': langContent.downloadProject,
+    'courses-title': langContent.courses,
+    'contact-title': langContent.contact,
+    'cv-btn': langContent.cv,
+    'footer-text': langContent.footer,
+    'project1-title': langContent.project1Title,
+    'project1-description': langContent.project1Description,
+    'project1-skills': langContent.project1Skills,
+    'project2-title': langContent.project2Title,
+    'project2-description': langContent.project2Description,
+    'project2-skills': langContent.project2Skills,
+    'project3-title': langContent.project3Title,
+    'project3-description': langContent.project3Description,
+    'project3-skills': langContent.project3Skills,
+    'project4-title': langContent.project4Title,
+    'project4-description': langContent.project4Description,
+    'project4-skills': langContent.project4Skills
+  };
+
+  for (const [id, text] of Object.entries(textElements)) {
+    const element = document.getElementById(id);
+    if (element) {
+      if (id === 'about') {
+        element.innerHTML = text;
+      } else {
+        element.textContent = text;
+      }
+    }
+  }
+
+  document.getElementById('email-text').innerHTML = 
+    langContent.email.replace(': ', ': <a href="mailto:ehab.ali.gomaa256@gmail.com">') + '</a>';
+  
+  document.getElementById('linkedin-text').innerHTML = 
+    langContent.linkedin.replace(': ', ': <a href="https://linkedin.com/in/ehab-ali25" target="_blank">') + '</a>';
+  
+  document.getElementById('github-text').innerHTML = 
+    langContent.github.replace(': ', ': <a href="https://www.github.com/Mre25" target="_blank">') + '</a>';
+
+  updateSkillsList();
+  updateCoursesList();
+}
+
+function openProjectsGallery() {
+  document.getElementById('projects-gallery').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectsGallery() {
+  document.getElementById('projects-gallery').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  lightbox.option({
+    'resizeDuration': 200,
+    'wrapAround': true,
+    'showImageNumberLabel': false
+  });
+
+  setLanguage('en');
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeProjectsGallery();
+    }
+  });
+});`;
+        }
+        
+        // تحديث ملف على GitHub
+        async function updateFileOnGitHub(filename, content) {
+            try {
+                // الحصول على معلومات الملف الحالي
+                const fileUrl = `https://api.github.com/repos/${githubUser}/portfolio/contents/${filename}`;
+                
+                const getResponse = await fetch(fileUrl, {
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                let sha = '';
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                }
+                
+                // رفع الملف الجديد
+                const updateResponse = await fetch(fileUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Update ${filename} via CMS`,
+                        content: btoa(unescape(encodeURIComponent(content))),
+                        sha: sha || undefined
+                    })
+                });
+                
+                if (!updateResponse.ok) {
+                    throw new Error('Failed to update file on GitHub');
+                }
+                
+                return true;
+            } catch (error) {
+                throw error;
+            }
+        }
+        
+        // دالة معاينة البيانات
+        function previewData() {
+            updateDataFromForm();
+            document.getElementById('jsonPreview').textContent = JSON.stringify(portfolioData, null, 2);
+            showStatus('Data preview generated', 'info');
+        }
+        
+        // تحميل JSON
+        function downloadJSON() {
+            updateDataFromForm();
+            const dataStr = JSON.stringify(portfolioData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'portfolio-data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            showStatus('JSON file downloaded', 'success');
+        }
+        
+        // دالة عرض القسم
+        function showSection(sectionId) {
+            // إخفاء كل الأقسام
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // إزالة النشاط من كل روابط التنقل
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // عرض القسم المحدد
+            document.getElementById(`${sectionId}Section`).classList.add('active');
+            
+            // إضافة النشاط لرابط التنقل
+            event.target.classList.add('active');
+        }
+        
+        // دالة عرض الحالة
+        function showStatus(message, type = 'info') {
+            const statusBar = document.getElementById('statusBar');
+            const statusText = document.getElementById('statusText');
+            
+            statusBar.className = `status-bar status-${type}`;
+            statusText.textContent = message;
+            
+            statusBar.classList.add('show');
+            
+            setTimeout(() => {
+                statusBar.classList.remove('show');
+            }, 5000);
+        }
+        
+        // دالة عرض/إخفاء التحميل
+        function showLoading(show) {
+            document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+        }
+        
+        // اختصارات لوحة المفاتيح
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+S للحفظ
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveAllChanges();
+            }
+            
+            // Ctrl+P للمعاينة
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                previewData();
+            }
+            
+            // Esc للخروج
+            if (e.key === 'Escape') {
+                if (document.getElementById('cmsContainer').style.display === 'block') {
+                    logout();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
